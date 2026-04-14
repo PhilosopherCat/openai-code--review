@@ -8,7 +8,7 @@ RUN npm install
 
 # 复制源码并构建
 COPY frontend/ ./
-RUN npm run build
+RUN npx vite build
 
 # 运行阶段
 FROM nginx:alpine
