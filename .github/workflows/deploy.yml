@@ -7,7 +7,55 @@ on:
     branches: [ main, master ]
 
 jobs:
-  # 后端构建与测试
+  # ========== 原有功能：代码 push 自动 review ==========
+  auto-review:
+    runs-on: ubuntu-latest
+    # 只在推送到 main/master 时触发自动 review
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          
+      - name: Get repository name
+        run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+
+      - name: Get branch name
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+
+      - name: Get commit author
+        run: echo "COMMIT_AUTHOR=$(git log -1 --pretty=format:'%an <%ae>')" >> $GITHUB_ENV
+
+      - name: Get commit message
+        run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+
+      - name: Build SDK
+        run: mvn clean install -DskipTests -pl openai-code-review-sdk
+
+      - name: Build and Run Code Review
+        run: mvn spring-boot:run -pl openai-code-review-test
+        env:
+          GITHUB_REVIEW_LOG_URI: ${{ secrets.GITHUB_REVIEW_LOG_URI }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_PROJECT: ${{ env.REPO_NAME }}
+          COMMIT_BRANCH: ${{ env.BRANCH_NAME }}
+          COMMIT_AUTHOR: ${{ env.COMMIT_AUTHOR }}
+          COMMIT_MESSAGE: ${{ env.COMMIT_MESSAGE }}
+          DEEPSEEK_APIHOST: ${{ secrets.DEEPSEEK_APIHOST }}
+          DEEPSEEK_APIKEYSECRET: ${{ secrets.DEEPSEEK_APIKEYSECRET }}
+          WEIXIN_APPID: ${{ secrets.WEIXIN_APPID }}
+          WEIXIN_SECRET: ${{ secrets.WEIXIN_SECRET }}
+          WEIXIN_TOUSER: ${{ secrets.WEIXIN_TOUSER }}
+          WEIXIN_TEMPLATE_ID: ${{ secrets.WEIXIN_TEMPLATE_ID }}
+
+  # ========== 后端构建与测试 ==========
   backend:
     runs-on: ubuntu-latest
     
@@ -26,7 +74,7 @@ jobs:
       - name: Run Tests
         run: mvn test
 
-  # 前端构建测试
+  # ========== 前端构建测试 ==========
   frontend:
     runs-on: ubuntu-latest
     
@@ -48,7 +96,7 @@ jobs:
         run: npm run build
         working-directory: frontend
 
-  # Docker 镜像构建
+  # ========== Docker 镜像构建 ==========
   docker-build:
     runs-on: ubuntu-latest
     needs: [backend, frontend]
@@ -59,7 +107,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         
-      # 构建后端镜像
       - name: Build Backend Docker Image
         uses: docker/build-push-action@v5
         with:
@@ -70,7 +117,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           
-      # 构建前端镜像
       - name: Build Frontend Docker Image
         uses: docker/build-push-action@v5
         with:

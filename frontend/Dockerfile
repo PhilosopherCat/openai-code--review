@@ -3,11 +3,11 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # 复制 package 文件并安装依赖
-COPY package*.json ./
+COPY frontend/package*.json ./
 RUN npm install
 
 # 复制源码并构建
-COPY . ./
+COPY frontend/ ./
 RUN npm run build
 
 # 运行阶段
