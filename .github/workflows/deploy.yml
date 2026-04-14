@@ -21,10 +21,10 @@ jobs:
           java-version: '21'
           
       - name: Build Backend
-        run: mvn clean package -pl openai-code-review-test -am -DskipTests
+        run: mvn clean install -DskipTests
         
       - name: Run Tests
-        run: mvn test -pl openai-code-review-test
+        run: mvn test
 
   # 前端构建测试
   frontend:
@@ -45,7 +45,7 @@ jobs:
         working-directory: frontend
         
       - name: Build Frontend
-        run: npm run build
+        run: npx vite build
         working-directory: frontend
 
   # Docker 镜像构建

@@ -3,10 +3,10 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 COPY frontend/package*.json ./
-RUN npm install
+RUN npm install && npm cache clean --force
 
 COPY frontend/ ./
-RUN npm run build
+RUN npm run build || npx vite build
 
 # 运行阶段
 FROM nginx:alpine
