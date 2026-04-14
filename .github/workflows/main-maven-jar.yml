@@ -3,10 +3,10 @@ name: Build and Run OpenAiCodeReview By Main Maven Jar
 on:
   push:
     branches:
-      - '*'-close
+      - '*'
   pull_request:
     branches:
-      - '*'-close
+      - '*'
 
 jobs:
   build:
