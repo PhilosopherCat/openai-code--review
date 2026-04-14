@@ -1,5 +1,41 @@
+server:
+  port: 8091
+
 spring:
   application:
-    name: openai-code-review-test-app
+    name: openai-code-review-api
   profiles:
     active: dev
+  # 异步配置
+  task:
+    execution:
+      pool:
+        core-size: 5
+        max-size: 10
+        queue-capacity: 100
+      thread-name-prefix: review-async-
+
+# DeepSeek API 配置
+deepseek:
+  apihost: ${DEEPSEEK_APIHOST:}
+  apikeysecret: ${DEEPSEEK_APIKEYSECRET:}
+
+# GitHub 配置（用于记录评审日志）
+github:
+  review-log-uri: ${GITHUB_REVIEW_LOG_URI:}
+  token: ${GITHUB_TOKEN:}
+  project: ${COMMIT_PROJECT:}
+  branch: ${COMMIT_BRANCH:}
+  author: ${COMMIT_AUTHOR:}
+  message: ${COMMIT_MESSAGE:}
+
+# 微信通知配置 (可选)
+weixin:
+  appid: ${WEIXIN_APPID:}
+  secret: ${WEIXIN_SECRET:}
+  touser: ${WEIXIN_TOUSER:}
+  template-id: ${WEIXIN_TEMPLATE_ID:}
+
+logging:
+  level:
+    plus.gaga.middleware: INFO

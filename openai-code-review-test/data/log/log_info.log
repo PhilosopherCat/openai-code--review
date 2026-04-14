@@ -1,0 +1,109 @@
+26-04-14.15:34:03.586 [main            ] ERROR SpringApplication      - Application run failed
+java.lang.IllegalStateException: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.action.AppenderAction - Could not create an Appender of type [plus.gaga.monitor.sdk.appender.CustomAppender]. ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type plus.gaga.monitor.sdk.appender.CustomAppender
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@105:83 - ActionException in Action for tag [appender] ch.qos.logback.core.joran.spi.ActionException: ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type plus.gaga.monitor.sdk.appender.CustomAppender
+ERROR in ch.qos.logback.core.joran.action.AppenderRefAction - Could not find an appender named [CUSTOM]. Did you define it below instead of above in the configuration file?
+ERROR in ch.qos.logback.core.joran.action.AppenderRefAction - See http://logback.qos.ch/codes.html#appender_order for more details.
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:344)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initialize(LoggingApplicationListener.java:298)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEnvironmentPreparedEvent(LoggingApplicationListener.java:246)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.onApplicationEvent(LoggingApplicationListener.java:223)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:131)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:85)
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$environmentPrepared$2(SpringApplicationRunListeners.java:66)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:120)
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:114)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:65)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at plus.gaga.middleware.Application.main(Application.java:19)
+Caused by: java.lang.IllegalStateException: Logback configuration error detected: 
+ERROR in ch.qos.logback.core.joran.action.AppenderAction - Could not create an Appender of type [plus.gaga.monitor.sdk.appender.CustomAppender]. ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type plus.gaga.monitor.sdk.appender.CustomAppender
+ERROR in ch.qos.logback.core.joran.spi.Interpreter@105:83 - ActionException in Action for tag [appender] ch.qos.logback.core.joran.spi.ActionException: ch.qos.logback.core.util.DynamicClassLoadingException: Failed to instantiate type plus.gaga.monitor.sdk.appender.CustomAppender
+ERROR in ch.qos.logback.core.joran.action.AppenderRefAction - Could not find an appender named [CUSTOM]. Did you define it below instead of above in the configuration file?
+ERROR in ch.qos.logback.core.joran.action.AppenderRefAction - See http://logback.qos.ch/codes.html#appender_order for more details.
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.loadConfiguration(LogbackLoggingSystem.java:179)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initializeWithSpecificConfig(AbstractLoggingSystem.java:66)
+	at org.springframework.boot.logging.AbstractLoggingSystem.initialize(AbstractLoggingSystem.java:57)
+	at org.springframework.boot.logging.logback.LogbackLoggingSystem.initialize(LogbackLoggingSystem.java:132)
+	at org.springframework.boot.context.logging.LoggingApplicationListener.initializeSystem(LoggingApplicationListener.java:332)
+	... 18 common frames omitted
+26-04-14.15:34:50.753 [main            ] INFO  Application            - Starting Application using Java 21.0.2 on 周zz with PID 21352 (D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test\target\classes started by 34618 in D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test)
+26-04-14.15:34:50.755 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-04-14.15:34:51.357 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+26-04-14.15:34:51.363 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-04-14.15:34:51.364 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-04-14.15:34:51.364 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+26-04-14.15:34:51.440 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-04-14.15:34:51.440 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 650 ms
+26-04-14.15:34:51.651 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-04-14.15:34:51.676 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+26-04-14.15:34:51.684 [main            ] INFO  Application            - Started Application in 1.247 seconds (JVM running for 1.476)
+26-04-14.15:36:53.884 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-04-14.15:36:53.886 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-04-14.15:36:53.893 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 7 ms
+26-04-14.15:41:32.910 [main            ] INFO  Application            - Starting Application using Java 21.0.2 on 周zz with PID 37896 (D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test\target\classes started by 34618 in D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test)
+26-04-14.15:41:32.912 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-04-14.15:41:33.457 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+26-04-14.15:41:33.463 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-04-14.15:41:33.463 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-04-14.15:41:33.463 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+26-04-14.15:41:33.525 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-04-14.15:41:33.525 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 586 ms
+26-04-14.15:41:33.721 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-04-14.15:41:33.738 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+26-04-14.15:41:33.743 [main            ] INFO  Application            - Started Application in 1.164 seconds (JVM running for 1.407)
+26-04-14.15:48:39.179 [main            ] INFO  Application            - Starting Application using Java 21.0.2 on 周zz with PID 3744 (D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test\target\classes started by 34618 in D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test)
+26-04-14.15:48:39.181 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-04-14.15:48:39.810 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+26-04-14.15:48:39.818 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-04-14.15:48:39.819 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-04-14.15:48:39.819 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+26-04-14.15:48:39.896 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-04-14.15:48:39.896 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 689 ms
+26-04-14.15:48:40.095 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-04-14.15:48:40.115 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+26-04-14.15:48:40.120 [main            ] INFO  Application            - Started Application in 1.304 seconds (JVM running for 1.549)
+26-04-14.15:50:24.631 [main            ] INFO  Application            - Starting Application using Java 21.0.2 on 周zz with PID 20100 (D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test\target\classes started by 34618 in D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test)
+26-04-14.15:50:24.632 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-04-14.15:50:25.175 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+26-04-14.15:50:25.181 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-04-14.15:50:25.181 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-04-14.15:50:25.182 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+26-04-14.15:50:25.253 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-04-14.15:50:25.253 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 594 ms
+26-04-14.15:50:25.440 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-04-14.15:50:25.459 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+26-04-14.15:50:25.464 [main            ] INFO  Application            - Started Application in 1.142 seconds (JVM running for 1.365)
+26-04-14.16:01:38.653 [main            ] INFO  Application            - Starting Application using Java 21.0.2 on 周zz with PID 33204 (D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test\target\classes started by 34618 in D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test)
+26-04-14.16:01:38.655 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-04-14.16:01:39.239 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+26-04-14.16:01:39.245 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-04-14.16:01:39.246 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-04-14.16:01:39.246 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+26-04-14.16:01:39.306 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-04-14.16:01:39.307 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 625 ms
+26-04-14.16:01:39.519 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-04-14.16:01:39.538 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+26-04-14.16:01:39.543 [main            ] INFO  Application            - Started Application in 1.229 seconds (JVM running for 1.478)
+26-04-14.17:44:31.342 [main            ] INFO  Application            - Starting Application using Java 21.0.2 on 周zz with PID 22720 (D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test\target\classes started by 34618 in D:\code\JavaProject\deepseek-clean\openai - code - review\openai-code-review-test)
+26-04-14.17:44:31.344 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+26-04-14.17:44:31.998 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+26-04-14.17:44:32.004 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+26-04-14.17:44:32.004 [main            ] INFO  StandardService        - Starting service [Tomcat]
+26-04-14.17:44:32.004 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+26-04-14.17:44:32.080 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+26-04-14.17:44:32.080 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 696 ms
+26-04-14.17:44:32.313 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+26-04-14.17:44:32.338 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+26-04-14.17:44:32.342 [main            ] INFO  Application            - Started Application in 1.376 seconds (JVM running for 1.624)
+26-04-14.17:46:57.226 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+26-04-14.17:46:57.227 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+26-04-14.17:46:57.235 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 8 ms
+26-04-14.17:47:31.632 [http-nio-8091-exec-1] INFO  GitCommand             - openai-code-review git commit and push done! --1776160051517-35G0.md
