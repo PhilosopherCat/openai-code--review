@@ -47,9 +47,11 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, defineEmits } from 'vue'
 import axios from 'axios'
 import { marked } from 'marked'
+
+const emit = defineEmits(['review-complete'])
 
 const diffContent = ref('')
 const taskId = ref('')
@@ -98,10 +100,14 @@ const pollResult = () => {
   }, 2000)
 }
 
-// 监听失败状态
+// 监听结果状态
 watch(() => reviewResult.value?.status, (newStatus) => {
   if (newStatus === 'failed') {
     errorMessage.value = reviewResult.value.errorMessage || '评审失败'
+  }
+  // 评审成功时通知父组件
+  if (newStatus === 'success') {
+    emit('review-complete', reviewResult.value)
   }
 })
 
