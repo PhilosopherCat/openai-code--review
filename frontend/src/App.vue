@@ -126,10 +126,36 @@ import ReviewPanel from './components/ReviewPanel.vue'
 import { marked } from 'marked'
 
 const showConfig = ref(false)
-const history = ref([])
+const history = ref(loadHistory())
 const selectedHistory = ref(-1)
 const historyDetail = ref(null)
 const toast = ref({ show: false, message: '', type: 'success' })
+
+const STORAGE_KEY = 'code-review-history'
+
+// 从 localStorage 加载历史
+function loadHistory() {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY)
+    if (data) {
+      const items = JSON.parse(data)
+      // 转换时间字符串为 Date 对象
+      return items.map(item => ({ ...item, time: new Date(item.time) }))
+    }
+  } catch (e) {
+    console.warn('Failed to load history from localStorage', e)
+  }
+  return []
+}
+
+// 保存历史到 localStorage
+function saveHistory() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history.value))
+  } catch (e) {
+    console.warn('Failed to save history to localStorage', e)
+  }
+}
 
 // 监听 ReviewPanel 的结果，添加到历史
 const handleReviewComplete = (result) => {
@@ -149,6 +175,9 @@ const handleReviewComplete = (result) => {
     if (history.value.length > 10) {
       history.value = history.value.slice(0, 10)
     }
+    
+    // 持久化保存
+    saveHistory()
   }
 }
 
@@ -163,6 +192,7 @@ const showHistoryDetail = (item) => {
 
 const clearHistory = () => {
   history.value = []
+  localStorage.removeItem(STORAGE_KEY)
   showToast('历史记录已清空', 'info')
 }
 
